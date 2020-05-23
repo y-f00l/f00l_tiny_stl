@@ -1,0 +1,3 @@
+/Users/g1ft/CLionProjects/foo1_tiny_stl/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/g1ft/CLionProjects/foo1_tiny_stl/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/g1ft/CLionProjects/foo1_tiny_stl/cmake-build-debug/CMakeFiles/f00l_tiny_stl.dir
