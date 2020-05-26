@@ -83,6 +83,9 @@
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/main.cpp">
 			<Option target="f00l_tiny_stl"/>
 		</Unit>
+		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_algo.h">
+			<Option target="f00l_tiny_stl"/>
+		</Unit>
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_algobase.h">
 			<Option target="f00l_tiny_stl"/>
 		</Unit>

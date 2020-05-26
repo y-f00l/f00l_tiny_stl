@@ -19,8 +19,16 @@ stl_list.h
 /Users/g1ft/CLionProjects/foo1_tiny_stl/stl_list.h
 stl_pair.h
 /Users/g1ft/CLionProjects/foo1_tiny_stl/stl_pair.h
+stl_hashtable.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_hashtable.h
 vector
 -
+
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_algo.h
+stl_config.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_config.h
+stl_iterator_base.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_iterator_base.h
 
 /Users/g1ft/CLionProjects/foo1_tiny_stl/stl_algobase.h
 string
@@ -57,6 +65,20 @@ type_traits.h
 /Users/g1ft/CLionProjects/foo1_tiny_stl/type_traits.h
 stl_iterator_base.h
 /Users/g1ft/CLionProjects/foo1_tiny_stl/stl_iterator_base.h
+
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_hashtable.h
+stl_config.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_config.h
+stl_iterator.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_iterator.h
+stl_alloc.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_alloc.h
+stl_algo.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_algo.h
+stl_vector.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_vector.h
+stl_pair.h
+/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_pair.h
 
 /Users/g1ft/CLionProjects/foo1_tiny_stl/stl_iterator.h
 stl_config.h
