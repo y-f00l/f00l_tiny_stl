@@ -95,6 +95,9 @@
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_construct.h">
 			<Option target="f00l_tiny_stl"/>
 		</Unit>
+		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_hashtable.h">
+			<Option target="f00l_tiny_stl"/>
+		</Unit>
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_iterator.h">
 			<Option target="f00l_tiny_stl"/>
 		</Unit>
@@ -102,6 +105,9 @@
 			<Option target="f00l_tiny_stl"/>
 		</Unit>
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_list.h">
+			<Option target="f00l_tiny_stl"/>
+		</Unit>
+		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_pair.h">
 			<Option target="f00l_tiny_stl"/>
 		</Unit>
 		<Unit filename="/Users/g1ft/CLionProjects/foo1_tiny_stl/stl_uninitial.h">

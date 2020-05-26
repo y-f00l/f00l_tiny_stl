@@ -182,7 +182,7 @@ __STL_BEGIN_NAMESPACE
                 destroy(_M_start, _M_finish);
                 _M_deallocate(_M_start, _M_end_of_storage - _M_start);
                 _M_start = __tmp;
-                _M_finish = _M_start;
+                _M_finish = _M_start + __old_size;
                 _M_end_of_storage = _M_start + __n;
             }
         }
@@ -491,7 +491,7 @@ __STL_BEGIN_NAMESPACE
                 _M_deallocate(__new_start,__new_size);
             }
             destroy(_M_start,_M_finish);
-            _M_deallocate(_M_finish,_M_end_of_storage - _M_start);
+            _M_deallocate(_M_start,_M_end_of_storage - _M_start);
             _M_start = __new_start;
             _M_finish = __new_finish;
             _M_end_of_storage = __new_finish + __new_size;

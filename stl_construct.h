@@ -5,6 +5,7 @@
 
 #include "stl_config.h"
 #include "type_traits.h"
+#include "stl_iterator_base.h"
 
 __STL_BEGIN_NAMESPACE
     template<class _T1, class _T2>
@@ -18,37 +19,30 @@ __STL_BEGIN_NAMESPACE
     }
 
     template<class _Tp>
-    void destroy_one(_Tp *, __true_type) {};
-
-    template<class _Tp>
-    void destroy_one(_Tp *__p, __false_type) {
-        if(__p != nullptr) {
-            __p->~Tp();
-        }
+    inline void _Destroy(_Tp* __p) {
+    __p->~_Tp();
     }
 
-    template<class _Tp>
-    void _Destroy(_Tp *__p) {
-        destroy_one(*__p, typename __type_traits<_Tp>::has_trival_destructor());
+    template<class _ForwardIter>
+    void __destroy_aux(_ForwardIter __first, _ForwardIter __last, __false_type){
+        for(; __first != __last; ++__first)
+            destroy(&*__first);
     }
 
-    template<class _ForwardIterator>
-    void _destroy_aux(_ForwardIterator __first, _ForwardIterator __last, __false_type) {
-        for(;__first != __last;__first++)
-            _Destroy(&*__first);
+    template<class _ForwardIter>
+    void __destroy_aux(_ForwardIter __first, _ForwardIter __last, __true_type) {}
+
+    template<class _ForwardIter, class _Tp>
+    inline void
+    __destroy(_ForwardIter __first, _ForwardIter __last, _Tp *)
+    {
+        typedef typename __type_traits<_Tp>::has_trival_destructor _Trival_destructor;
+        __destroy_aux(__first, __last, _Trival_destructor());
     }
 
-    template<class _ForwardIterator>
-    inline void _destroy_aux(_ForwardIterator, _ForwardIterator, __true_type) {}
-
-    template<class _ForwardIterator, class _Tp>
-    inline void _destroy(_ForwardIterator __first, _ForwardIterator __last,_Tp *) {
-        _destroy_aux(__first, __last,typename __type_traits<_Tp>::has_trival_destructor());
-    }
-
-    template<class _ForwardIterator>
-    inline void _Destroy(_ForwardIterator __first,_ForwardIterator __last) {
-        _destroy(__first, __last, __VALUE_TYPE(__first));
+    template<class _ForwardIter>
+    inline void _Destroy(_ForwardIter __first, _ForwardIter __last) {
+        __destroy(__first, __last, __VALUE_TYPE(__first));
     }
 
     inline void _Destroy(char *, char *) {}

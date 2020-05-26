@@ -93,14 +93,15 @@ __STL_BEGIN_NAMESPACE
     struct iterator_traits<const _Tp*> {
         typedef random_access_iterator_tag iterator_category;
         typedef _Tp                        value_type;
-        typedef const _Tp*                       pointer;
-        typedef const _Tp&                       reference;
+        typedef const _Tp*                 pointer;
+        typedef const _Tp&                 reference;
         typedef ptrdiff_t                  difference_type;
     };
 
     template<class _Iterator>
     inline typename iterator_traits<_Iterator>::iterator_category __iterator_category(const _Iterator&) {
-        return iterator_traits<_Iterator>::iterator_category();
+        typedef typename iterator_traits<_Iterator>::iterator_category _Category;
+        return _Category ();
     }
 
     template<class _Iterator>
@@ -129,8 +130,8 @@ __STL_BEGIN_NAMESPACE
     }
 
 #define __ITERATOR_CATEGORY(__i) __iterator_category(__i)
-#define __DISTANCE_TYPE(__i)     __distance_type(__i)
-#define __VALUE_TYPE(__i)        __value_type(__i)
+#define __DISTANCE_TYPE(__i)     __iterator_distance_type(__i)
+#define __VALUE_TYPE(__i)        __iterator_value_type(__i)
 
 
     template<class _InputIter, class _Distance>

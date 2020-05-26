@@ -8,6 +8,8 @@ CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_config.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_construct.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_iterator.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_iterator_base.h
+CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_list.h
+CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_pair.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_uninitial.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../stl_vector.h
 CMakeFiles/f00l_tiny_stl.dir/main.cpp.o: ../type_traits.h

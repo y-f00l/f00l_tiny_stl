@@ -77,14 +77,14 @@ __STL_BEGIN_NAMESPACE
 
     template<class _ForwardIter, class _Size, class _Tp>
     inline _ForwardIter __uninitialized_fill_n_aux(_ForwardIter __first, _Size __n, const _Tp& __x, __true_type) {
-        fill_n(__first, __n, __x);
+        return fill_n(__first, __n, __x);
     }
 
     template<class _ForwardIter, class _Size, class _Tp>
     _ForwardIter __uninitialized_fill_n_aux(_ForwardIter __first, _Size __n, const _Tp& __x, __false_type) {
         _ForwardIter __cur = __first;
         try {
-            for( ; __n != 0 ; --__n, ++__cur)
+            for( ; __n > 0 ; --__n, ++__cur)
                 _Construct(&*__cur, __x);
             return __cur;
         }
@@ -97,7 +97,7 @@ __STL_BEGIN_NAMESPACE
     template<class _ForwardIter, class _Size, class _Tp, class _Tp1>
     inline _ForwardIter __uninitialized_fill_n(_ForwardIter __first, _Size __n, const _Tp& __x, _Tp1*) {
         typedef typename __type_traits<_Tp1>::is_POD_type IS_POD;
-        return __uninitialized_fill_aux(__first, __n, __x, IS_POD());
+        return __uninitialized_fill_n_aux(__first, __n, __x, IS_POD());
     }
 
     template<class _ForwardIter, class _Size, class _Tp>

@@ -100,40 +100,12 @@ __STL_BEGIN_NAMESPACE
 
     template<class _BidirecIter1, class _BidirecIter2>
     inline _BidirecIter2 copy_backword(_BidirecIter1 __first, _BidirecIter1 __last, _BidirecIter2 __result) {
-        typedef typename __type_traits<typename iterator_traits<_BidirecIter1>::value_type>::has_trivial_assignment_operator _Trivial;
+        typedef typename __type_traits<typename iterator_traits<_BidirecIter1>::value_type>::has_trival_assignment_operator _Trivial;
         return __copy_backword_dispatch<_BidirecIter1, _BidirecIter2, _Trivial>::copy(__first, __last, __result);
     }
 
 
     //copy
-    template<class _InputIter, class _OutputIter>
-    inline _OutputIter copy(_InputIter __first, _InputIter __last, _OutputIter __result) {
-        return __copy_aux(__first, __last, __result, __VALUE_TYPE(__first));
-    }
-
-    template<class _InputIter, class _OutputIter, class _Tp>
-    inline _OutputIter __copy_aux(_InputIter __first, _InputIter __last, _OutputIter __result, _Tp*) {
-        typedef typename  __type_traits<_InputIter>::has_trival_assignment_operator _Trivial;
-        return __copy_aux2(__first, __last, __result, _Trivial());
-    }
-
-    template<class _InputIter, class _OutputIter>
-    inline _OutputIter __copy_aux2(_InputIter __first, _InputIter __last, _OutputIter __result, __false_type) {
-        return __copy(__first, __last, __result, __ITERATOR_CATEGORY(__first), __DISTANCE_TYPE(__first));
-    }
-
-
-    template<class _InputIter, class _OutputIter>
-    inline _OutputIter __copy_aux2(_InputIter __first, _InputIter __last, _OutputIter __result, __true_type) {
-        return __copy(__first, __last, __result,__ITERATOR_CATEGORY(__first), __DISTANCE_TYPE(__first));
-    }
-
-
-    template<class _Tp>
-    inline _Tp* __copy_aux2(const _Tp* __first, const _Tp* __last ,_Tp* __result, __true_type) {
-        return copy_trivial(__first, __last, __result);
-    }
-
     template<class _Tp>
     inline _Tp* __copy_trivial(const _Tp *__first, const _Tp *__last, _Tp* __result) {
         memmove(__result, __first);
@@ -141,11 +113,47 @@ __STL_BEGIN_NAMESPACE
     }
 
     template<class _InputIter, class _OutputIter, class _Distance>
-    inline _OutputIter copy(_InputIter __first, _InputIter __last, _OutputIter __result,input_iterator_tag, _Distance*) {
+    inline _OutputIter __copy(_InputIter __first, _InputIter __last, _OutputIter __result,input_iterator_tag, _Distance*) {
         for(;__first != __last ; __first++ , __result++) {
             *__result = *__first;
         }
         return __result;
+    }
+
+    template<class _InputIter, class _OutputIter, class _Distance>
+    inline _OutputIter __copy(_InputIter __first, _InputIter __last, _OutputIter __result,random_access_iterator_tag, _Distance*) {
+        for(_Distance __n = __last - __first; __n > 0; --__n) {
+            *__result = *__first;
+            ++__first;
+            ++__result;
+        }
+        return __result;
+    }
+
+    template<class _Tp>
+    inline _Tp* __copy_aux2(const _Tp* __first, const _Tp* __last ,_Tp* __result, __true_type) {
+        return __copy_trivial(__first, __last, __result);
+    }
+
+    template<class _InputIter, class _OutputIter>
+    inline _OutputIter __copy_aux2(_InputIter __first, _InputIter __last, _OutputIter __result, __true_type) {
+        return __copy(__first, __last, __result,__ITERATOR_CATEGORY(__first), __DISTANCE_TYPE(__first));
+    }
+
+    template<class _InputIter, class _OutputIter>
+    inline _OutputIter __copy_aux2(_InputIter __first, _InputIter __last, _OutputIter __result, __false_type) {
+        return __copy(__first, __last, __result, __ITERATOR_CATEGORY(__first), __DISTANCE_TYPE(__first));
+    }
+
+    template<class _InputIter, class _OutputIter, class _Tp>
+    inline _OutputIter __copy_aux(_InputIter __first, _InputIter __last, _OutputIter __result, _Tp*) {
+        typedef typename  __type_traits<_Tp>::has_trival_assignment_operator _Trivial;
+        return __copy_aux2(__first, __last, __result, _Trivial());
+    }
+
+    template<class _InputIter, class _OutputIter>
+    inline _OutputIter copy(_InputIter __first, _InputIter __last, _OutputIter __result) {
+        return __copy_aux(__first, __last, __result, __VALUE_TYPE(__first));
     }
 
     //fill
